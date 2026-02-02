@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 20px !important;
+    height: 20px !important;
+    transform: scale(0.55);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 18px !important;
+    line-height: 1;
+}
+
+.swiper-wrapper {
+    padding-bottom: 35px; 
+}
+
+.swiper {
+    overflow: visible;
+}
+
+/* common arrow styles */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #1F2933 !important;
+    z-index: 50;
+}
+
+/* MOBILE + TABLET (up to 1024px): arrows horizontally center, bottom */
+@media (max-width: 1025px) {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: auto !important;
+        bottom: 10px !important;
+    }
+
+    .swiper-button-prev {
+        left: 48% !important;
+        transform: translateX(-100%);
+    }
+
+    .swiper-button-next {
+        right: 48% !important;
+        transform: translateX(100%);
+    }
+}
+
+/* DESKTOP (above 1024px): arrows side + vertical center */
+@media (min-width: 1025px) {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: 50% !important;
+        transform: translateY(-50%);
+        bottom: auto !important;
+    }
+
+    .swiper-button-prev {
+        left: 20px !important;
+    }
+
+    .swiper-button-next {
+        right: 20px !important;
+    }
+}

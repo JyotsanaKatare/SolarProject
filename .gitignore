@@ -1,0 +1,12 @@
+# backend
+API/node_modules/
+API/.env
+
+# frontend
+solar/node_modules/
+solar/dist/
+
+# common
+npm-debug.log*
+yarn-debug.log*
+*.zip
