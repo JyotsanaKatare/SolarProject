@@ -16,6 +16,8 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 }));
 
+app.options("*", cors());
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
