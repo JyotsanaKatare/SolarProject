@@ -38,6 +38,7 @@ const freeQuote = async (req, res) => {
             subject: "New Free Quote Request",
             html,
         })
+         console.log("MAIL SENT ✅");
 
         res.status(200).json({
             success: true,
