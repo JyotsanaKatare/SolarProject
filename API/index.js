@@ -9,7 +9,10 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: "https://appowers.in",
+    origin: [
+        "https://appowers.in",
+        "http://localhost:5173",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 }));
 
@@ -20,8 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", routes);
 
-const server = app.listen(process.env.port, () => {
-    console.log(`App is running on port number : ${process.env.port}`)
+const PORT = process.env.PORT || 5000;
+
+const server = app.listen(PORT, () => {
+    console.log(`App is running on port number : ${PORT}`);
 });
 
 export default server;
