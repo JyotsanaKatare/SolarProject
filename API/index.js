@@ -9,14 +9,12 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: [
-    "https://appowers.in",
-    "http://localhost:5173",
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    origin: [
+        "https://appowers.in",
+        "http://localhost:5173",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
 }));
-
-app.options("*", cors());
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -28,7 +26,7 @@ app.use("/", routes);
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.send("API is running successfully 🚀");
+    res.send("API is running successfully 🚀");
 });
 
 const server = app.listen(PORT, () => {
