@@ -34,11 +34,11 @@ const freeQuote = async (req, res) => {
            </div>
         </div>`;
 
-        await sendMail({
-            subject: "New Free Quote Request",
-            html,
-        })
-         console.log("MAIL SENT ✅");
+        // await sendMail({
+        //     subject: "New Free Quote Request",
+        //     html,
+        // })
+        //  console.log("MAIL SENT ✅");
 
         res.status(200).json({
             success: true,
