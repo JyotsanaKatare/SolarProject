@@ -9,11 +9,11 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: [
-        "https://appowers.in",
-        "http://localhost:5173",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  origin: [
+    "https://appowers.in",
+    "http://localhost:5173",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
 }));
 
 app.options("*", cors());
