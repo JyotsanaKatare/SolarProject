@@ -3,11 +3,16 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service: "gmail", // Ye Render par port issues ko handle kar leta hai
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // 587 ke liye hamesha false rakhein
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false // Ye Render par TLS issues bypass karta hai
+  }
 });
 
 // Verify connection
