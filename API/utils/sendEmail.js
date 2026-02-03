@@ -4,12 +4,19 @@ import dotenv from "dotenv";
 dotenv.config(); // Ye line yahan bhi add kar dein
 
 console.log("Email Config:", process.env.EMAIL_USER ? "FOUND" : "NOT FOUND");
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465, // Ya 587 try karein agar 465 fail ho
+  secure: true, // 465 ke liye true, 587 ke liye false
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // Make sure this is an App Password
+    pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false // Yeh connection drop hone se bachata hai
+  },
+  connectionTimeout: 10000, // 10 seconds wait karega
 });
 
 transporter.verify((error, success) => {
