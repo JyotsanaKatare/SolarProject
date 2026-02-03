@@ -34,29 +34,32 @@ const freeQuote = async (req, res) => {
            </div>
         </div>`;
 
-        console.log("BEFORE SEND MAIL");
-
         await sendMail({
-            to: "jyotsanakatare03@gmail.com", // admin
+            to: "jyotsanakatare03@gmail.com",
             subject: "New Free Quote Request",
             html,
-        });
+        })
+        console.log("MAIL SENT ✅");
 
-        console.log("AFTER SEND MAIL ✅");
-
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: "Quote request sent successfully",
         });
+
+        console.log("name", name);
+        console.log("phone", phone);
+        console.log("email", email);
+        console.log("bill", bill);
+        console.log("city", city);
 
     } catch (err) {
         console.error("EMAIL ERROR ❌", err);
         return res.status(500).json({
             success: false,
-            message: "Failed to send quote request",
+            message: err.message,
         });
     }
-};
+}
 
 const contactUs = async (req, res) => {
     try {
