@@ -1,35 +1,22 @@
+
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: 465,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-  connectionTimeout: 10000, // 10 sec
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+const sendMail = async ({ subject, html }) => {
 
-const sendMail = async ({ to, subject, html }) => {
-  try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM,
-      to,
-      subject,
-      html,
-    });
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
 
-    console.log("✅ Email sent successfully");
-  } catch (error) {
-    console.error("❌ Email error:", error.message);
-    throw error; // important
-  }
+  await transporter.sendMail({
+    from: `"Ap Power Energy Solutions" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_USER,
+    subject,
+    html,
+  });
 };
 
 export default sendMail;

@@ -35,11 +35,10 @@ const freeQuote = async (req, res) => {
         </div>`;
 
         await sendMail({
-            to: "jyotsanakatare03@gmail.com",
             subject: "New Free Quote Request",
             html,
         })
-        console.log("MAIL SENT ✅");
+         console.log("MAIL SENT ✅");
 
         res.status(200).json({
             success: true,
@@ -53,8 +52,7 @@ const freeQuote = async (req, res) => {
         console.log("city", city);
 
     } catch (err) {
-        console.error("EMAIL ERROR ❌", err);
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             message: err.message,
         });
