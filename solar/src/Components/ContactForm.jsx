@@ -44,7 +44,7 @@ function ContactForm() {
     }
 
     try {
-      await axios.post(`${__formapiurl}/contact_us`, formDetails)
+      await axios.post(`${__formapiurl}/form/contact_us`, formDetails)
       toast.success("Message sent successfully");
       setName("");
       setEmail("");

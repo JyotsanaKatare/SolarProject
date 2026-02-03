@@ -1,3 +1,4 @@
+
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config(); // Ye line yahan bhi add kar dein
@@ -9,6 +10,14 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS, // Make sure this is an App Password
   },
+});
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.log("SMTP Connection Error:", error);
+  } else {
+    console.log("Server is ready to send emails! ✅");
+  }
 });
 
 const sendMail = async ({ to, subject, html }) => {

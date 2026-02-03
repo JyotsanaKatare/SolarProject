@@ -38,7 +38,7 @@ function FreeQuoteForm({ animate, closeModal }) {
             console.log(`${__formapiurl}`);
             console.log("try Success");
             console.log("name", name);
-            await axios.post('https://solarproject-api.onrender.com/free_quote', formDetails);
+            await axios.post(`${__formapiurl}/form/free_quote`, formDetails);
             console.log(`${__formapiurl}/free_quote`);
             toast.success("Quote request sent successfully");
             setName("");
@@ -49,8 +49,10 @@ function FreeQuoteForm({ animate, closeModal }) {
             closeModal();
 
         } catch (err) {
-            console.log("AXIOS ERROR:", err.response || err.message);
-            toast.error('Something went wrong');
+            // Backend se jo message humne bheja hai (like "All fields are required") wo dikhane ke liye:
+            const errorMsg = err.response?.data?.message || "Something went wrong";
+            console.log("AXIOS ERROR:", errorMsg);
+            toast.error(errorMsg);
         }
     }
 
