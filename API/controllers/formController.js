@@ -37,9 +37,9 @@ const freeQuote = async (req, res) => {
         console.log("BEFORE SEND MAIL");
 
         await sendMail({
-            to: "jyotsanakatare03@gmail.com",
-            subject: "SMTP FINAL TEST",
-            html: "<h1>Brevo Working</h1>",
+            to: "jyotsanakatare03@gmail.com", // admin
+            subject: "New Free Quote Request",
+            html,
         });
 
         console.log("AFTER SEND MAIL ✅");

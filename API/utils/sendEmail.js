@@ -11,6 +11,9 @@ const transporter = nodemailer.createTransport({
   connectionTimeout: 10000, // 10 sec
   greetingTimeout: 10000,
   socketTimeout: 10000,
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
 const sendMail = async ({ to, subject, html }) => {
