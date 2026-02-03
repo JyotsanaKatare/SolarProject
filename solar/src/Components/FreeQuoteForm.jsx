@@ -35,6 +35,7 @@ function FreeQuoteForm({ animate, closeModal }) {
         }
 
         try {
+            console.log(`${__formapiurl}`);
             console.log("try Success");
             await axios.post(`${__formapiurl}/free_quote`, formDetails);
             console.log(`${__formapiurl}/free_quote`);

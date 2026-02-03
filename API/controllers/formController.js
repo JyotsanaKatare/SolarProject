@@ -2,7 +2,7 @@
 import sendMail from "../utils/sendEmail.js";
 
 const freeQuote = async (req, res) => {
-    console.log("frntend data recieve", req.body);
+    console.log("frontend data recieve", req.body);
     try {
         const { name, phone, email, bill, city } = req.body;
 
@@ -39,23 +39,19 @@ const freeQuote = async (req, res) => {
             subject: "New Free Quote Request",
             html,
         })
-         console.log("MAIL SENT ✅");
+
+        console.log(`Email successfully sent for ${name}`)
 
         res.status(200).json({
             success: true,
             message: "Quote request sent successfully",
         });
 
-        console.log("name", name);
-        console.log("phone", phone);
-        console.log("email", email);
-        console.log("bill", bill);
-        console.log("city", city);
-
     } catch (err) {
-        res.status(500).json({
+        console.error("Controller Error:", err);
+        return res.status(500).json({
             success: false,
-            message: err.message,
+            message: "Something went wrong. Please try again later.",
         });
     }
 }
