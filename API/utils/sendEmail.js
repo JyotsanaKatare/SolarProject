@@ -1,6 +1,8 @@
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+dotenv.config(); // Ye line yahan bhi add kar dein
 
-// Transporter ko function ke bahar rakhein (Connection Reuse)
+console.log("Email Config:", process.env.EMAIL_USER ? "FOUND" : "NOT FOUND");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
