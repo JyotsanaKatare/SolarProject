@@ -3,7 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import routes from './routes/mainroutes.js';
+import routes from './routes/formRoutes.js';
 
 dotenv.config();
 const app = express();

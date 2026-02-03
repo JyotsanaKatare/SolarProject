@@ -1,2 +1,2 @@
 
-export const __formapiurl = "https://solarproject-api.onrender.com/form";
+export const __formapiurl = "https://solarproject-api.onrender.com";
