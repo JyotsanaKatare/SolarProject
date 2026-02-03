@@ -34,30 +34,29 @@ const freeQuote = async (req, res) => {
            </div>
         </div>`;
 
-        await sendMail({
-            subject: "New Free Quote Request",
-            html,
-        })
-         console.log("MAIL SENT ✅");
+        console.log("BEFORE SEND MAIL");
 
-        res.status(200).json({
+        await sendMail({
+            to: "jyotsanakatare03@gmail.com",
+            subject: "SMTP FINAL TEST",
+            html: "<h1>Brevo Working</h1>",
+        });
+
+        console.log("AFTER SEND MAIL ✅");
+
+        return res.status(200).json({
             success: true,
             message: "Quote request sent successfully",
         });
 
-        console.log("name", name);
-        console.log("phone", phone);
-        console.log("email", email);
-        console.log("bill", bill);
-        console.log("city", city);
-
     } catch (err) {
-        res.status(500).json({
+        console.error("EMAIL ERROR ❌", err);
+        return res.status(500).json({
             success: false,
-            message: err.message,
+            message: "Failed to send quote request",
         });
     }
-}
+};
 
 const contactUs = async (req, res) => {
     try {
