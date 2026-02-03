@@ -1,32 +1,22 @@
 import nodemailer from "nodemailer";
 
 const sendMail = async ({ subject, html }) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // must be false for 587
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
+  const transporter = nodemailer.createTransport({
+    host: "smtp-relay.brevo.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.BREVO_SMTP_USER,
+      pass: process.env.BREVO_SMTP_KEY,
+    },
+  });
 
-    await transporter.sendMail({
-      from: `"AP Power Energy Solutions" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject,
-      html,
-    });
-
-    console.log("EMAIL SENT SUCCESSFULLY ✅");
-  } catch (error) {
-    console.error("EMAIL ERROR ❌:", error.message);
-    throw error; // important so controller catches it
-  }
+  await transporter.sendMail({
+    from: `"AP Power Energy Solutions" <${process.env.BREVO_SMTP_USER}>`,
+    to: process.env.RECEIVER_EMAIL,
+    subject,
+    html,
+  });
 };
 
 export default sendMail;
