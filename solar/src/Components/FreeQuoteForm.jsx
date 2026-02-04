@@ -13,6 +13,7 @@ function FreeQuoteForm({ animate, closeModal }) {
     const [email, setEmail] = useState("");
     const [bill, setBill] = useState("");
     const [city, setCity] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
 
@@ -34,14 +35,12 @@ function FreeQuoteForm({ animate, closeModal }) {
             return;
         }
 
-        try {
-            console.log(`${__formapiurl}`);
-            console.log("try Success");
-            console.log("name", name);
+        setLoading(true);
 
-            await axios.post(`${__formapiurl}/form/free_quote`, formDetails, {timeout: 60000 // 60 seconds ka wait karein
+        try {
+            await axios.post(`${__formapiurl}/form/free_quote`, formDetails, {
+                timeout: 60000
             });
-            console.log(`${__formapiurl}/free_quote`);
             toast.success("Quote request sent successfully");
             setName("");
             setPhone("");
@@ -51,10 +50,11 @@ function FreeQuoteForm({ animate, closeModal }) {
             closeModal();
 
         } catch (err) {
-            // Backend se jo message humne bheja hai (like "All fields are required") wo dikhane ke liye:
             const errorMsg = err.response?.data?.message || "Something went wrong";
             console.log("AXIOS ERROR:", errorMsg);
             toast.error(errorMsg);
+        } finally {
+            setLoading(false); // Success ho ya error, loader band karein
         }
     }
 
@@ -141,11 +141,19 @@ function FreeQuoteForm({ animate, closeModal }) {
                     />
                 </div>
 
-                <div
-                    onClick={handleSubmit}
-                    className='flex justify-center items-center my-4'>
-                    <button className='px-4 py-2 md:px-5 md:py-2 bg-[#1F2933] text-white text-sm md:text-lg rounded-lg hover:bg-[#FDB813] hover:text-[#1F2933] font-semibold transition-all duration-300 cursor-pointer'>
-                        Submit
+                <div className='flex justify-center items-center my-4'>
+                    <button
+                        onClick={handleSubmit}
+                        disabled={loading}
+                        className='px-4 py-2 md:px-5 md:py-2 bg-[#1F2933] text-white text-sm md:text-lg rounded-lg hover:bg-[#FDB813] hover:text-[#1F2933] font-semibold transition-all duration-300 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2'
+                    >
+                        {loading && (
+                            <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        )}
+                        {loading ? "Processing..." : "Submit"}
                     </button>
                 </div>
             </div>

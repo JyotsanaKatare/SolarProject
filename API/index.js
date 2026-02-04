@@ -7,15 +7,6 @@ import routes from './routes/formRoutes.js';
 dotenv.config();
 const app = express();
 
-// app.use(cors({
-//     origin: [
-//         "https://appowers.in",
-//         "http://localhost:5173",
-//     ],
-//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-//     credentials: true
-// }));
-
 app.use(cors({
     origin: "https://appowers.in", 
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

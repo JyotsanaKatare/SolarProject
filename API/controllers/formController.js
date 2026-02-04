@@ -2,7 +2,6 @@
 import sendMail from "../utils/sendEmail.js";
 
 const freeQuote = async (req, res) => {
-    console.log("frontend data recieve", req.body);
     try {
         const { name, phone, email, bill, city } = req.body;
 

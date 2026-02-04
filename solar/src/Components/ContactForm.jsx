@@ -19,6 +19,7 @@ function ContactForm() {
       Select Subject
     </div>
   );
+  const [loading, setLoading] = useState(false);
 
   const subjectOptions = ["Customer Service", "Job Enquiry", "Feedback", "Other"];
 
@@ -43,6 +44,8 @@ function ContactForm() {
       return;
     }
 
+    setLoading(true);
+
     try {
       await axios.post(`${__formapiurl}/form/contact_us`, formDetails)
       toast.success("Message sent successfully");
@@ -56,6 +59,8 @@ function ContactForm() {
     } catch (err) {
       console.log("AXIOS ERROR:", err.response || err.message);
       toast.error('Something went wrong');
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -148,11 +153,24 @@ function ContactForm() {
 
           <button
             onClick={handleSubmit}
-            className="my-2 md:my-4 px-3 py-2 md:py-3 text-center md:w-25 bg-[#FDB813] rounded-lg
-             active:scale-95 transition-transform duration-150 cursor-pointer
-             text-[16px] md:text-[18px] text-[#1F2933]/80 font-semibold"
+            disabled={loading}
+            className={`my-2 md:my-4 px-3 py-2 md:py-3 text-center md:min-w-25 bg-[#FDB813] rounded-lg 
+    active:scale-95 transition-all duration-150 text-[16px] md:text-[18px] text-[#1F2933]/80 font-semibold
+    flex items-center justify-center gap-2
+    ${loading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:bg-[#eab308]'}`}
           >
-            Send
+            {loading ? (
+              <>
+                {/* Spinner Icon */}
+                <svg className="animate-spin h-5 w-5 text-[#1F2933]/80" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+              </>
+            ) : (
+              "Send"
+            )}
           </button>
         </div>
 

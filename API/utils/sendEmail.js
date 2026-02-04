@@ -3,14 +3,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Resend ka instance banayein
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendMail = async ({ to, subject, html }) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Free tier mein yahi default rehta hai
-      to: [process.env.EMAIL_USER], // Jis email par aap data receive karna chahte hain
+      from: 'onboarding@resend.dev', 
+      to: [process.env.EMAIL_USER], 
       subject: subject,
       html: html,
     });
