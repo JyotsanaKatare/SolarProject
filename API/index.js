@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/form", routes);
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT,'0.0.0.0', () => {
     console.log(`App is running on port number : ${PORT}`);
 });
 
