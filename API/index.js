@@ -17,10 +17,14 @@ const app = express();
 // }));
 
 app.use(cors({
-    origin: "*", // Testing ke liye sab kuch allow karein
+    origin: "https://appowers.in", 
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
+
+// Pre-flight request handle karne ke liye (Sabse zaroori)
+app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
