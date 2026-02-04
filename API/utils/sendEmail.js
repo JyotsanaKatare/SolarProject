@@ -25,7 +25,8 @@ const transporter = nodemailer.createTransport({
   },
   tls: {
     rejectUnauthorized: false // Security handshakes ko smooth banata hai
-  }
+  },
+  connectionTimeout: 20000, // Timeout limit badha dein
 });
 
 transporter.verify(function (error, success) {
