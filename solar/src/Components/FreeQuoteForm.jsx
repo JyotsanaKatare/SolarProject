@@ -38,8 +38,9 @@ function FreeQuoteForm({ animate, closeModal }) {
             console.log(`${__formapiurl}`);
             console.log("try Success");
             console.log("name", name);
-            
-            await axios.post(`${__formapiurl}/form/free_quote`, formDetails);
+
+            await axios.post(`${__formapiurl}/form/free_quote`, formDetails, {timeout: 60000 // 60 seconds ka wait karein
+            });
             console.log(`${__formapiurl}/free_quote`);
             toast.success("Quote request sent successfully");
             setName("");
