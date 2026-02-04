@@ -38,6 +38,7 @@ function FreeQuoteForm({ animate, closeModal }) {
             console.log(`${__formapiurl}`);
             console.log("try Success");
             console.log("name", name);
+            
             await axios.post(`${__formapiurl}/form/free_quote`, formDetails);
             console.log(`${__formapiurl}/free_quote`);
             toast.success("Quote request sent successfully");
