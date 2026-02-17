@@ -4,6 +4,7 @@ import HouseImg1 from '../assets/Image/HouseImg1.jpg';
 import HouseImg2 from '../assets/Image/HouseImg2.jpg';
 import HouseImg3 from '../assets/Image/HouseImg3.jpg';
 import HouseImg4 from '../assets/Image/HouseImg4.jpg';
+import { motion } from 'framer-motion';
 
 function Work() {
 
@@ -20,7 +21,7 @@ function Work() {
             heading: "Consuming or Exporting Electricity to the Grid",
             para: "Once converted into AC power, the electricity can be used immediately to power your home or business. If the system produces more energy than required, the excess electricity is exported to the utility grid through net metering, helping reduce future electricity bills."
         }
-    ]
+    ];
 
     const cards = [
         {
@@ -47,7 +48,7 @@ function Work() {
             para: "If solar generation is insufficient—such as during night-time or peak usage—additional electricity is automatically drawn from the grid, ensuring uninterrupted power supply at all times."
         },
 
-    ]
+    ];
 
     return (
         <section className="w-full bg-white md:my-5 px-4 lg:px-6">
@@ -55,11 +56,16 @@ function Work() {
                 How It Works?
             </h1>
 
+            {/* card-section */}
             <div className="max-w-280 mx-auto flex flex-col md:flex-row gap-7">
 
                 {cardSection.map((item, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: index * 0.3, ease: "easeInOut" }}
+                        viewport={{ once: true }}
                         className="w-full md:w-1/3 p-8 bg-blue-50 rounded-[50px] shadow-[0_0_12px_rgba(0,0,0,0.15)] shadow-neutral-500 hover:scale-102 transition-all duration-300">
 
                         <h1 className='text-3xl lg:text-4xl text-[#1F2933] font-medium pb-6 lg:pb-10 leading-10'>
@@ -69,20 +75,30 @@ function Work() {
                         <p className='text-lg md:text-xl'>
                             {item.para}
                         </p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
             {/* cards */}
             <div className="max-w-280 mx-auto flex flex-col md:grid grid-cols-2 lg:flex lg:flex-row my-18 md:my-25">
                 {cards.map((item, index) => (
-                    <div
+                    <motion.div
                         key={index}
-                        className=''
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            duration: 0.8,
+                            delay: index * 0.2, // Index ke hisab se automatic delay (0, 0.2, 0.4...)
+                            ease: "easeOut"
+                        }}
+                        className='w-full'
                     >
-                        <img
+                        <motion.img
                             src={item.img}
                             alt='HouseImage'
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.4 }}
                             className='w-full object-cover'
                         />
 
@@ -93,7 +109,7 @@ function Work() {
                         <p className='w-full lg:w-60 py-4 px-2 text-xl text-start text-[#1F2933]'>
                             {item.para}
                         </p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </section>

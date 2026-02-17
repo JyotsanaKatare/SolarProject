@@ -6,8 +6,8 @@ import ContactForm from '../Components/ContactForm';
 function ContactPage() {
   return (
     <>
-    <Contact />
-    <ContactForm />
+      <Contact />
+      <ContactForm />
     </>
   )
 }

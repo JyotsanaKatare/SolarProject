@@ -11,6 +11,10 @@ import ServicesPage from './Pages/ServicesPage';
 import AboutPage from './Pages/AboutPage';
 import ContactPage from './Pages/ContactPage';
 import WhatsAppButton from './Components/WhatsAppButton';
+import TestmonialsPage from './Pages/TestmonialsPage';
+import FAQs from './Components/FAQs';
+import PrivacyPolicy from './Components/PrivacyPolicy';
+import TermsConditions from './Components/TermsConditions';
 
 function App() {
 
@@ -23,8 +27,12 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/why_solar' element={<WhySolarPage />} />
         <Route path='/services' element={<ServicesPage />} />
+        <Route path='/testimonials' element={<TestmonialsPage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/contact' element={<ContactPage />} />
+        <Route path='/faq' element={<FAQs />} />
+        <Route path='/privacy_policy' element={<PrivacyPolicy />} />
+        <Route path='/terms' element={<TermsConditions />} />
       </Routes>
       <Footer />
 

@@ -1,5 +1,6 @@
 
-import React from 'react'
+import React from 'react';
+import { motion } from 'framer-motion';
 
 function AboutCard() {
 
@@ -47,8 +48,12 @@ function AboutCard() {
             <div className="max-w-280 mx-auto flex flex-col md:flex-row gap-7 md:py-10">
 
                 {cardSection.map((item, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: index * 0.3, ease: "easeInOut" }}
+                        viewport={{ once: true }}
                         className="w-full md:w-1/3 p-8 bg-[#1F2933]/80 rounded-[50px] shadow-[0_0_12px_rgba(0,0,0,0.15)] shadow-neutral-500 hover:scale-102 transition-all duration-300">
 
                         <h1 className='text-white text-3xl lg:text-4xl font-medium pb-6 lg:pb-10 leading-10'>
@@ -58,7 +63,7 @@ function AboutCard() {
                         <div className='text-white text-lg md:text-xl'>
                             {item.para}
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
 
             </div>

@@ -5,6 +5,8 @@ import Slider from '../Components/Slider'
 import TeamWork from '../Components/TeamWork'
 import FreeQuoteForm from '../Components/FreeQuoteForm'
 import ProcessTimeline from '../Components/ProcessTimeLine'
+import MiddleBanner from '../Components/MiddleBanner'
+import LastBanner from '../Components/LastBanner'
 
 function HomePage() {
 
@@ -13,7 +15,7 @@ function HomePage() {
 
     useEffect(() => {
         setIsOpen(true)
-        setTimeout(() => setAnimate(true), 100)
+        setTimeout(() => setAnimate(true), 300)
     }, [])
 
     const closeModal = () => {
@@ -25,7 +27,9 @@ function HomePage() {
         <>
             <MiddleSolarVideo />
             <ProcessTimeline />
+            <MiddleBanner />
             <Slider />
+            <LastBanner />
             <TeamWork />
 
             {/* Quote Popup */}

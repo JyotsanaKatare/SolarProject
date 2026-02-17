@@ -7,15 +7,17 @@ import { MdVerifiedUser } from "react-icons/md";
 import { FaTools } from "react-icons/fa";
 import { MdElectricMeter } from "react-icons/md";
 import { FaWrench } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const ProcessTimeline = () => {
+
     return (
-        <div>
-            <h1 className='text-3xl md:text-5xl text-[#1F2933] font-semibold text-center pt-5'>
+        <div className="my-5 md:my-8 lg:my-10">
+            <h1 className='text-3xl md:text-4xl lg:text-5xl text-[#1F2933] font-semibold text-center pt-4'>
                 Our Process
             </h1>
 
-            <div className="w-full flex justify-center py-5 overflow-visible">
+            <div className="w-full flex justify-center py-2 md:py-5 overflow-visible">
 
                 <svg
                     viewBox="-16 0 360 500"
@@ -42,7 +44,15 @@ const ProcessTimeline = () => {
                         { y: 445, x: 140, side: "left", icon: <FaWrench />, title: "CLEANING AND MAINTENANCE", num: "8" },
                     ].map((step, i) => (
 
-                        <g key={i} transform={`translate(${step.x} ${step.y})`}>
+                        <motion.g
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                            transform={`translate(${step.x} ${step.y})`}
+                            transformTemplate={(_, generated) =>
+                                `translate(${step.x}px, ${step.y}px) ${generated}`}>
 
                             {/* Diamond */}
                             <g transform="rotate(45)">
@@ -85,7 +95,7 @@ const ProcessTimeline = () => {
                                 </>
                             )}
 
-                        </g>
+                        </motion.g>
                     ))}
 
                 </svg>

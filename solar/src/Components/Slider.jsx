@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { motion } from 'framer-motion';
 
 function Slider() {
 
@@ -16,104 +17,112 @@ function Slider() {
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            para: "Installation process was smooth and the team explained everything clearly.",
-            name: "Pawan rao",
+            para: "Installation process was very smooth. Team explained everything clearly and completed the work.",
+            name: "Sameer",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            name: "Pawan Rao",
-            para: "Installation process was very smooth. Team explained everything clearly and completed the work on time.",
+            name: "Shree",
+            para: "Installation process was very smooth. Team explained everything clearly and completed the work.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <FaSquareFacebook />,
-            name: "Anjali Verma",
-            para: "Very professional service. The solar system is working perfectly and my electricity bill has reduced a lot.",
+            name: "Bruce",
+            para: "Very professional service. The solar system is working perfectly and electricity bill has reduced a lot.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <BsWhatsapp />,
-            name: "Rahul Sharma",
+            name: "Ritche",
             para: "Excellent support from enquiry to installation. Highly recommended for residential solar solutions.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            name: "Neha Patel",
+            name: "Lucie",
             para: "Quality work and knowledgeable staff. They guided us properly about subsidy and maintenance.",
         },
         {
             img: <FaRegUser />,
             iconTag: <FaSquareFacebook />,
-            name: "Amit Mishra",
-            para: "Very satisfied with the service. Clean installation and great after-sales support.",
+            name: "Sophia",
+            para: "Very satisfied with the service. Clean installation and great after-sales support and maintenance.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <BsWhatsapp />,
-            name: "Sunita Jain",
+            name: "Amelia",
             para: "Trustworthy company. Everything was transparent and completed within the promised timeline.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            para: "Very professional service. Highly satisfied with the solar installation.",
-            name: "Pawan rao",
+            para: "Very professional service. Highly satisfied with the solar installation. Very good explaination...",
+            name: "Denny",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            name: "Rakesh Yadav",
+            name: "Nova",
             para: "Team was very cooperative and professional. Installation was done neatly without any issues.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <FaSquareFacebook />,
-            name: "Kavita Singh",
+            name: "Emily",
             para: "Good experience overall. Proper guidance was given about system usage and maintenance.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <BsWhatsapp />,
-            name: "Vikram Solanki",
+            name: "Daniel",
             para: "Solar panel quality is excellent and the performance is as promised. Very happy with the service.",
         },
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            name: "Meena Choudhary",
+            name: "Henry",
             para: "Installation completed on time and the team was very polite. Would definitely recommend them.",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            para: "Installation process was smooth and the team explained everything clearly.",
-            name: "Shravan Sen",
+            para: "Installation process was smooth and the team explained everything clearly and complete process.",
+            name: "Alexander",
         },
 
         {
             img: <FaRegUser />,
             iconTag: <SiInstagram />,
-            para: "Very professional service. Highly satisfied with the solar installation.",
-            name: "Deepak rao",
+            para: "Very professional service. Highly satisfied with the solar installation. Very good explaination...",
+            name: "Ava",
         },
     ];
 
     return (
-        <section className="w-full lg:my-15 px-4 lg:px-6">
+        <motion.section
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full md:my-8 lg:my-10 px-4 lg:px-6">
+
             <div className="max-w-280 mx-auto md:pb-5">
-                <h1 className='text-3xl md:text-5xl text-[#1F2933] font-semibold text-center pb-6 md:pb-15 pt-5'>Our Customer Reviews</h1>
+                <h1 className='text-3xl md:text-4xl lg:text-5xl text-[#1F2933] font-semibold text-center pt-5 pb-6 md:pb-10 md:pt-0'>
+                    Our Customer Reviews
+                </h1>
 
                 {/* Slider */}
                 <div>
@@ -165,13 +174,12 @@ function Slider() {
                                 <div className="flex justify-center py-4 text-[24px] text-[#FDB813]">
                                     {item.iconTag}
                                 </div>
-
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }
 

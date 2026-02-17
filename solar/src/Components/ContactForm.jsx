@@ -5,6 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { __formapiurl } from '../../API_URL';
 import toast from 'react-hot-toast';
+import { motion } from 'framer-motion';
 
 function ContactForm() {
 
@@ -19,6 +20,7 @@ function ContactForm() {
       Select Subject
     </div>
   );
+
   const [loading, setLoading] = useState(false);
 
   const subjectOptions = ["Customer Service", "Job Enquiry", "Feedback", "Other"];
@@ -80,15 +82,23 @@ function ContactForm() {
       <div className="max-w-280 mx-auto ">
 
         {/* contact section */}
-        <div className='w-full md:w-[80%] mx-auto shadow-[0_0_8px_rgba(0,0,0,0.15)] px-10 py-3 md:py-5'>
-          <div className="mt-4 w-full flex flex-col md:flex md:gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className='w-full md:w-[80%] mx-auto shadow-[0_0_8px_rgba(0,0,0,0.15)] px-10 py-3 md:py-5'>
+
+          <div className="mt-4 w-full flex">
             <input
               type="text"
               value={name}
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
               className="flex-1 border-b border-gray-400 px-2 py-3 outline-none" />
+          </div>
 
+          <div className="mt-4 w-full flex">
             <input
               type="text"
               value={email}
@@ -154,10 +164,9 @@ function ContactForm() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className={`my-2 md:my-4 px-3 py-2 md:py-3 text-center md:min-w-25 bg-[#FDB813] rounded-lg 
-    active:scale-95 transition-all duration-150 text-[16px] md:text-[18px] text-[#1F2933]/80 font-semibold
-    flex items-center justify-center gap-2
-    ${loading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:bg-[#eab308]'}`}
+            className={`my-2 md:my-4 px-3 py-2 md:py-3 text-center md:min-w-25 bg-[#FDB813] rounded-lg active:scale-95 transition-all duration-150 text-[16px] md:text-[18px] text-[#1F2933]/80 font-semibold
+                      flex items-center justify-center gap-2 cursor-pointer
+                        not-first-of-type:${loading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:bg-[#eab308]'}`}
           >
             {loading ? (
               <>
@@ -172,17 +181,17 @@ function ContactForm() {
               "Send"
             )}
           </button>
-        </div>
+        </motion.div>
 
         {/* bottom content */}
         <div className='w-full md:w-[80%] mx-auto bg-[#FDB813] px-2 rounded-bl-lg rounded-br-lg py-3 md:py-5 shadow-[0_12px_12px_rgba(0,0,0,0.15)] '>
           <div className='text-center py-2'>
-            <h1 className='text-[16px] md:text-[30px] text-[#1F2933] font-semibold'>Career And
-              Customer Service</h1>
+            <h1 className='text-[16px] md:text-[30px] text-[#1F2933] font-semibold'>
+              Career And Customer Service</h1>
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }
 

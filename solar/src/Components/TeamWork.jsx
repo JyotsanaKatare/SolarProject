@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { Autoplay, Navigation } from "swiper/modules";
+import { motion } from 'framer-motion';
 
 function TeamWork() {
 
@@ -46,10 +47,18 @@ function TeamWork() {
     ];
 
     return (
-        <section className="w-full md:my-8 lg:my-15 px-4 lg:px-6">
-            <h1 className='text-3xl md:text-5xl text-[#1F2933] font-semibold text-center pb-5 md:pb-10 lg:pb-15'>
-                Team Work
-            </h1>
+        <motion.section
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="w-full md:my-8 lg:my-10 px-4 lg:px-6">
+
+            <div className="max-w-280 mx-auto">
+                <h1 className='text-3xl md:text-4xl lg:text-5xl text-[#1F2933] font-semibold text-center pt-3 pb-6 md:pb-10 md:pt-0'>
+                    Team Work
+                </h1>
+            </div>
 
             <Swiper
                 className=''
@@ -65,7 +74,7 @@ function TeamWork() {
                         <div className="max-w-280 mx-auto rounded-xl flex justify-between bg-blue-50">
 
                             {/* left side */}
-                            <div className='w-full lg:w-1/2 lg:p-4'>
+                            <div className='w-full lg:w-1/2 lg:p-4 flex justify-center items-center'>
                                 <img
                                     src={item.img}
                                     alt="TeamImage"
@@ -90,10 +99,13 @@ function TeamWork() {
 
                         </div>
                         <div className='lg:hidden w-full lg:w-1/2 py-4 text-center rounded-xl'>
+                            <h1 className='text-xl md:text-[30px] py-1 md:py-2 font-medium'>
+                                {item.heading}
+                            </h1>
                             <div className='text-[15px] md:text-[22px] md:leading-8'>
                                 {item.para1}
                             </div>
-                            
+
                             <div className='text-[15px] md:text-[22px] md:leading-8 pt-3'>
                                 {item.para2}
                             </div>
@@ -101,8 +113,7 @@ function TeamWork() {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
-        </section>
+        </motion.section>
     )
 }
 
